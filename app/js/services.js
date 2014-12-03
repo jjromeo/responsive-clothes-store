@@ -1,5 +1,6 @@
 shopApp.factory('Items', function() {
-    return [{'name': 'Almond Toe Court Shoes, Patent Black',
+    return {
+            shelf: [{'name': 'Almond Toe Court Shoes, Patent Black',
             'category': "Women's Footwear",
             'price': 99.00,
             'stockLeft': 5 },
@@ -51,5 +52,8 @@ shopApp.factory('Items', function() {
             'category': "Women's Formalwear",
             'price': 540.00,
             'stockLeft': 5 },
+        ],
+        invoice: [
         ]
+    }
 });

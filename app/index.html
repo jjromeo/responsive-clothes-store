@@ -4,16 +4,41 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
     <meta charset="UTF-8">
 </head>
-<body ng-controller="ItemListCtrl">
+<body>
 <h1>Welcome to CropShop</h1>
+<div  ng-controller="ItemListCtrl">
     <ul>
-        <li ng-repeat="product in products">
+        <li id="" ng-repeat="product in products">
             <h1>{{product.name}}</h1>
             <p>{{product.category}}</p>
             <p>{{product.price | currency : "£" : 2 }}</p>
             <p>{{product.stockLeft}}</p>
+            [<a href ng-click="addItem($index)">Add to cart</a>]
+        </li>
     </ul>
+</div>
+
+    <div ng-controller="ShopCartCtrl">
+        <table class="basket">
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+            <tr ng-repeat='item in invoice'</tr>
+                <td>{{item.name}}</td>
+                <td><input type="number"ng-model="item.qty"</td>
+                <td>{{item.price}}</td>
+                <td>{{invoice.total}}</td>
+                <td>
+                    [<a href ng-click="removeItem($index)">X</a>]
+                </td>
+            </tr>
+
+    </div>
     <script src="bower_components/angular/angular.js"></script>
     <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
 </body>
 </html>
