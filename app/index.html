@@ -1,9 +1,17 @@
 <html ng-app="shopApp">
 <head>
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+    <meta charset="UTF-8">
 </head>
 <body ng-controller="ItemListCtrl">
+<h1>Welcome to CropShop</h1>
     <ul>
-
+        <li ng-repeat="product in products">
+            <h1>{{product.name}}</h1>
+            <p>{{product.category}}</p>
+            <p>{{product.price | currency : "£" : 2 }}</p>
+            <p>{{product.stockLeft}}</p>
     </ul>
     <script src="bower_components/angular/angular.js"></script>
     <script src="js/controllers.js"></script>
