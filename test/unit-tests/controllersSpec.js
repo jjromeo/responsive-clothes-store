@@ -18,7 +18,6 @@ describe('Shop controllers', function() {
             var scope = {},
             ctrl = $controller('ShopCartCtrl', {$scope:scope});
             expect (scope.invoice.length).toBe(0);
-            console.log(scope.total())
         }));
 
         it ('can push items into the invoice array', inject(function($controller){
@@ -36,6 +35,17 @@ describe('Shop controllers', function() {
             expect(scope.invoice.length).toBe(1);
             scope.removeItem(0)
             expect(scope.invoice.length).toBe(0);
+        }));
+
+        it ('can apply a £5 discount to total cost', inject(function($controller){
+            var scope = {},
+            ctrl = $controller('ShopCartCtrl', {$scope:scope});
+            scope.invoice.push({'price': 99.00, 'qty': 1})
+            var subTotal = scope.total()
+            var discount = scope.activeDiscount
+            scope.selectDiscount('standardDiscount')
+            expect(subTotal).toBe(99.00)
+            expect(scope.applyDiscount(subTotal)).toBe(94.00)
         }));
 
     });

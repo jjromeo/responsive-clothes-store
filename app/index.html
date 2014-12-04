@@ -6,9 +6,9 @@
 </head>
 <body>
 <h1>Welcome to CropShop</h1>
-<div  ng-controller="ItemListCtrl">
-    <ul>
-        <li id="" ng-repeat="product in products">
+<div ng-controller="ItemListCtrl" id="products">
+    <ul class="products-list">
+        <li class="product" ng-repeat="product in products">
             <h1>{{product.name}}</h1>
             <p>{{product.category}}</p>
             <p>{{product.price | currency : "£" : 2 }}</p>
@@ -17,7 +17,7 @@
     </ul>
 </div>
 
-    <div ng-controller="ShopCartCtrl">
+    <div ng-controller="ShopCartCtrl" id="shopping-cart">
         <table class="basket">
             <tr>
                 <th>Item</th>
@@ -37,9 +37,15 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Total Cost</td>
+                <td> Sub-total</td>
                 <td>{{total() | currency : "£" : 2}}</td>
             </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Final cost</td>
+                <td>{{total() | currency : "£" : 2}}</td>
+
 
     </div>
     <script src="bower_components/angular/angular.js"></script>

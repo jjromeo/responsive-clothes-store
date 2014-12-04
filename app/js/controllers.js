@@ -36,6 +36,25 @@ shopApp.controller('ShopCartCtrl',['$scope', 'Items', function($scope, Items){
     $scope.removeItem = function(itemIndex){
        Items.invoice.splice(itemIndex, 1) 
     }
+
+    $scope.activeDiscount = null;
+
+    $scope.discounts = {
+        standardDiscount: -5,
+        overFifty: -10,
+        overSeventyFive: -15
+    }
+
+    $scope.selectDiscount = function(discount){
+        $scope.activeDiscount = $scope.discounts[discount]
+    }
+
+    $scope.applyDiscount = function(total){
+        total += $scope.activeDiscount
+        return total
+    }
+
+    
 }])
 
 
