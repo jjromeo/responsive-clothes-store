@@ -18,6 +18,7 @@ describe('Shop controllers', function() {
             var scope = {},
             ctrl = $controller('ShopCartCtrl', {$scope:scope});
             expect (scope.invoice.length).toBe(0);
+            console.log(scope.total())
         }));
 
         it ('can push items into the invoice array', inject(function($controller){

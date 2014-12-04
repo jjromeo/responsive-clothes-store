@@ -28,12 +28,18 @@
             </tr>
             <tr ng-repeat='item in invoice'</tr>
                 <td>{{item.name}}</td>
-                <td><input type="number"ng-model="item.qty"</td>
-                <td>{{item.price}}</td>
-                <td>{{invoice.total}}</td>
+                <td><input type="number"ng-model="item.qty" ng-required </td>
+                <td ng-model="item.price">{{item.price | currency : "£" : 2}}</td>
+                <td>{{item.price * item.qty | currency : "£" : 2 }}</td>
                 <td>
                     [<a href ng-click="removeItem($index)">X</a>]
                 </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Total Cost</td>
+                <td>{{total()}}</td>
             </tr>
 
     </div>
