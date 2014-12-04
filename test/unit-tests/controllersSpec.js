@@ -48,5 +48,13 @@ describe('Shop controllers', function() {
             expect(scope.applyDiscount(subTotal)).toBe(94.00)
         }));
 
+        it ('knows whether the invoice includes an item of Footwear', inject(function($controller){
+            var scope = {},
+            ctrl = $controller('ShopCartCtrl', {$scope:scope});
+            scope.invoice.push({'price': 99.00, 'qty': 1, 'category': "Men's Casualwear"})
+            expect(scope.hasFootwear()).toBe(false)
+            scope.invoice.push({'price': 99.00, 'qty': 1, 'category': "Men's Footwear"})
+            expect(scope.hasFootwear()).toBe(true)
+        }));
     });
 });

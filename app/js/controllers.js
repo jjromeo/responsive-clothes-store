@@ -45,6 +45,14 @@ shopApp.controller('ShopCartCtrl',['$scope', 'Items', function($scope, Items){
         overSeventyFive: -15
     }
 
+    $scope.hasFootwear = function(){
+        var footwear = false; 
+        $scope.invoice.forEach(function(item){
+            if (item.category.indexOf('Footwear') > -1 ) footwear = true
+        })
+       return footwear 
+    }
+
     $scope.selectDiscount = function(discount){
         $scope.activeDiscount = $scope.discounts[discount]
     }

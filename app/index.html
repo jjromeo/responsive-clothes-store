@@ -44,7 +44,15 @@
                 <td></td>
                 <td></td>
                 <td>Final cost</td>
-                <td>{{total() | currency : "£" : 2}}</td>
+                <td>{{applyDiscount(total()) | currency : "£" : 2}}</td>
+            </tr>
+            <tr ng-show="invoice.length > 0">
+                <td></td>
+                <td>[<a href ng-click="selectDiscount('standardDiscount')">£5 off!</a>]</td>
+                <td ng-show="total() > 50">[<a href ng-click="selectDiscount('overFifty')">£10 off!</a>]</td>
+                <td ng-show="total() > 75 && hasFootwear()">[<a href ng-click="selectDiscount('overSeventyFive')">£15 off!</a>]</td>
+            </tr>
+
 
 
     </div>
