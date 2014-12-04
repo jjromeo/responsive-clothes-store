@@ -12,7 +12,6 @@
             <h1>{{product.name}}</h1>
             <p>{{product.category}}</p>
             <p>{{product.price | currency : "£" : 2 }}</p>
-            <p>{{product.stockLeft}}</p>
             [<a href ng-click="addItem($index)">Add to cart</a>]
         </li>
     </ul>
@@ -28,7 +27,7 @@
             </tr>
             <tr ng-repeat='item in invoice'</tr>
                 <td>{{item.name}}</td>
-                <td><input type="number"ng-model="item.qty" ng-required </td>
+                <td><select ng-options="stock for stock in range(1, item.stockLeft)" ng-model="item.qty" ng-required </select></td>
                 <td ng-model="item.price">{{item.price | currency : "£" : 2}}</td>
                 <td>{{item.price * item.qty | currency : "£" : 2 }}</td>
                 <td>

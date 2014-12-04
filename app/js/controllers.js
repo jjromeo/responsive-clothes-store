@@ -10,17 +10,21 @@ shopApp.controller('ItemListCtrl',['$scope', 'Items', function($scope, Items){
     $scope.addItem = function(itemIndex) {
         var item = Items.shelf[itemIndex]
         item['qty'] = 1
-        item['sum'] = 0
         Items.invoice.push(item)
     }
-
-
-    
-
 }]);
 
 shopApp.controller('ShopCartCtrl',['$scope', 'Items', function($scope, Items){
     $scope.invoice = Items.invoice;
+
+    $scope.range = function(start, end) {
+        var result = [];
+        for (var i = start; i <= end; i++) {
+            result.push(i);
+        }
+        return result;
+    };
+
     $scope.total = function() {
         var total = 0
         angular.forEach($scope.invoice, function(item) {
