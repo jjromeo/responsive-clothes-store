@@ -29,5 +29,14 @@ describe('Shop controllers', function() {
             expect (scope.invoice.length).toBe(1);
         }));
 
+        it ('can remove items from the invoice array', inject(function($controller){
+            var scope = {},
+            ctrl = $controller('ShopCartCtrl', {$scope:scope});
+            scope.invoice.push({})
+            expect(scope.invoice.length).toBe(1);
+            scope.removeItem(0)
+            expect(scope.invoice.length).toBe(0);
+        }));
+
     });
 });
