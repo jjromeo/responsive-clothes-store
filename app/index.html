@@ -7,7 +7,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body >
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -32,14 +32,15 @@
             <div class="container">
                 <div class="row">
                     <div class="product col-lg-4 col-md-6 col-xs-12" ng-repeat="product in products">
-                        <h4 class="item">{{product.name}}</h4>
+                        <h4 class="item" data-ng-bind="product.name"></h4>
                         <img class= "item img-responsive icon" src="img/products/{{product.img}}">
-                        <p class="item">{{product.category}} </p>
-                        <p class="item">{{product.price | currency : "£" : 2 }}</p>
+                        <p class="item" data-ng-bind="product.category"></p>
+                        <p class="item" data-ng-bind='product.price | currency : "£" : 2' ></p>
                         <a href class="item btn btn-success btn-sm" ng-click="addItem($index)" id="add-item">Add to cart</a>
                     </div>
                 </div>
             </div>
+        </ul>
     </div>
 
     <div ng-controller="ShopCartCtrl" id="shopping-cart">
@@ -51,10 +52,10 @@
                 <th>Total</th>
             </tr>
             <tr ng-repeat='item in invoice'</tr>
-            <td>{{item.name}}</td>
+            <td data-ng-bind="item.name"></td>
             <td><select ng-options="stock for stock in range(1, item.stockLeft)" ng-model="item.qty" ng-required </select></td>
-            <td ng-model="item.price">{{item.price | currency : "£" : 2}}</td>
-            <td>{{item.price * item.qty | currency : "£" : 2 }}</td>
+            <td ng-model="item.price" data-ng-bind='item.price | currency : "£" : 2'></td>
+            <td data-ng-bind='item.price * item.qty | currency : "£" : 2'></td>
             <td>
                 <a href class="btn btn-danger btn-sm" ng-click="removeItem($index)" id="remove-item">Remove</a>
             </td>
@@ -63,14 +64,14 @@
             <td></td>
             <td></td>
             <td> Sub-total</td>
-            <td id="sub-total">{{total() | currency : "£" : 2}}</td>
+            <td id="sub-total" data-ng-bind='total() | currency : "£" : 2'></td>
             <td></td>
         </tr>
         <tr>
             <td></td>
             <td></td>
             <td>Final cost</td>
-            <td>{{applyDiscount(total()) | currency : "£" : 2}}</td>
+            <td data-ng-bind='applyDiscount(total()) | currency : "£" : 2'></td>
             <td></td>
         </tr>
         <tr ng-show="invoice.length > 0">
