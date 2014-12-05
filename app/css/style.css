@@ -4,3 +4,36 @@
 div.page {
     padding-top: 7%;
 }
+
+table.basket {
+    padding-left: 5%
+}
+
+img.item  {
+        width: 20%;
+        height: 130px ;
+        overflow:hidden;
+}
+
+.product {
+    border: 1px solid black;
+    height: 85%;
+    max-height: 200px;
+}
+
+.item {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.products-container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#add-item {
+    position: absolute;
+    left: 74%;
+    bottom: 10%;
+    margin-top: 10%;
+}
