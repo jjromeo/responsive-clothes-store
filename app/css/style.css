@@ -1,0 +1,6 @@
+/* fix for angular-bootstrap links */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer;}
+
+div.page {
+    padding-top: 7%;
+}

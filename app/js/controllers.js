@@ -1,8 +1,8 @@
 'use strict';
 
-var shopApp = angular.module('shopApp', []);
+var shopControllers = angular.module('shopControllers', []);
 
-shopApp.controller('ItemListCtrl',['$scope', 'Items', function($scope, Items){
+shopControllers.controller('ItemListCtrl',['$scope', 'Items', function($scope, Items){
     $scope.products = Items.shelf;
 
     $scope.invoice = Items.invoice
@@ -14,7 +14,7 @@ shopApp.controller('ItemListCtrl',['$scope', 'Items', function($scope, Items){
     }
 }]);
 
-shopApp.controller('ShopCartCtrl',['$scope', 'Items', function($scope, Items){
+shopControllers.controller('ShopCartCtrl',['$scope', 'Items', function($scope, Items){
     $scope.invoice = Items.invoice;
 
     $scope.range = function(start, end) {

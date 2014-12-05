@@ -1,4 +1,5 @@
-shopApp.factory('Items', function() {
+var shopServices = angular.module('shopServices', [])
+shopServices.factory('Items', function() {
     return {
             shelf: [{'name': 'Almond Toe Court Shoes, Patent Black',
             'category': "Women's Footwear",
