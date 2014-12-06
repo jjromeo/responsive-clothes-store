@@ -80,9 +80,9 @@
             </tr>
             <tr ng-show="invoice.length > 0">
                 <td><strong>Vouchers</strong></td>
-                <td><a class="btn btn-info" id="standard-discount" href ng-click="selectDiscount('standardDiscount')">£5 off!</a></td>
-                <td><a class="btn btn-info" id="over-fifty" href ng-click="total() > 50 ? selectDiscount('overFifty') : addAlert('You must spend more than £50 to use this discount')">£10 off!</a></td>
-                <td><a class="btn btn-info" id="over-seventy" href ng-click="total() > 75 && hasFootwear() ? selectDiscount('overSeventyFive') : addAlert('You must purchase some footwear and spend over £75 in order to use this discount.')">£15 off!</a></td>
+                <td><a class="btn btn-success" id="standard-discount" href ng-click="selectDiscount('standardDiscount')">£5 off!</a></td>
+                <td><a class="btn" ng-class="{'btn-info': total() < 50, 'btn-success': total() >= 50}"  id="over-fifty" href ng-click="total() >= 50 ? selectDiscount('overFifty') : addAlert('You must spend more than £50 to use this discount')">£10 off!</a></td>
+                <td><a class="btn" ng-class="{'btn-info': total() < 75 || (hasFootwear() !== true), 'btn-success': total() >= 75 && hasFootwear()}" id="over-seventy" href ng-click="total() >= 75 && hasFootwear() ? selectDiscount('overSeventyFive') : addAlert('You must purchase some footwear and spend over £75 in order to use this discount.')">£15 off!</a></td>
                 <td></td>
             </tr>
             <tr>
