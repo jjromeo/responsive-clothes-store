@@ -4,11 +4,19 @@ var shopControllers = angular.module('shopControllers', []);
 
 shopControllers.controller('ItemListCtrl',['$scope', 'Items', 'Alerts', function($scope, Items, Alerts){
     $scope.products = Items.shelf;
-
     $scope.invoice = Items.invoice
+    $scope.alerts = Alerts.alerts
+
+    $scope.addAlert = function(message) {
+        $scope.alerts.push({type: 'danger', msg: message})
+    }
+
+    $scope.hasStock = function(itemIndex){
+        return $scope.products[itemIndex].stockLeft > 0
+    }
 
     $scope.addItem = function(itemIndex) {
-        var item = Items.shelf[itemIndex]
+        var item = $scope.products[itemIndex]
         item['qty'] = 1
         Items.invoice.push(item)
     }

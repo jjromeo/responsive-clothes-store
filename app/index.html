@@ -36,7 +36,7 @@
                         <img class= "item img-responsive icon" src="img/products/{{product.img}}">
                         <p class="item" data-ng-bind="product.category"></p>
                         <p class="item" data-ng-bind='product.price | currency : "£" : 2' ></p>
-                        <a href class="item btn btn-success btn-xs" ng-click="addItem($index)" id="add-item">Add to cart</a>
+                        <a href class="item btn btn-success btn-xs" ng-click="hasStock($index) ? addItem($index) : addAlert('Sorry, this item is out of stock')" id="add-item">Add to cart</a>
                     </div>
                 </div>
             </div>
