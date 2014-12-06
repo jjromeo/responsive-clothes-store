@@ -31,66 +31,73 @@
     <div class="container page" ng-controller="ItemListCtrl" id="products">
             <div class="container">
                 <div class="row">
-                    <div class="product col-lg-4 col-md-6 col-xs-12" ng-repeat="product in products">
+                    <div class="product col-lg-3 col-md-5 col-xs-10" ng-repeat="product in products">
                         <h4 class="item" data-ng-bind="product.name"></h4>
                         <img class= "item img-responsive icon" src="img/products/{{product.img}}">
                         <p class="item" data-ng-bind="product.category"></p>
                         <p class="item" data-ng-bind='product.price | currency : "£" : 2' ></p>
-                        <a href class="item btn btn-success btn-sm" ng-click="addItem($index)" id="add-item">Add to cart</a>
+                        <a href class="item btn btn-success btn-xs" ng-click="addItem($index)" id="add-item">Add to cart</a>
                     </div>
                 </div>
             </div>
         </ul>
     </div>
-
-    <div ng-controller="ShopCartCtrl" id="shopping-cart">
-        <table ng-show= "invoice.length >  0" class="basket table table-striped table-bordered">
-            <tr>
-                <th>Item</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-            </tr>
-            <tr ng-repeat='item in invoice'</tr>
-            <td data-ng-bind="item.name"></td>
-            <td><select ng-options="stock for stock in range(1, item.stockLeft)" ng-model="item.qty" ng-required </select></td>
-            <td ng-model="item.price" data-ng-bind='item.price | currency : "£" : 2'></td>
-            <td data-ng-bind='item.price * item.qty | currency : "£" : 2'></td>
-            <td>
-                <a href class="btn btn-danger btn-sm" ng-click="removeItem($index)" id="remove-item">Remove</a>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td> Sub-total</td>
-            <td id="sub-total" data-ng-bind='total() | currency : "£" : 2'></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>Final cost</td>
-            <td data-ng-bind='applyDiscount(total()) | currency : "£" : 2'></td>
-            <td></td>
-        </tr>
-        <tr ng-show="invoice.length > 0">
-            <td></td>
-            <td>[<a href ng-click="selectDiscount('standardDiscount')">£5 off!</a>]</td>
-            <td ng-show="total() > 50">[<a href ng-click="selectDiscount('overFifty')">£10 off!</a>]</td>
-            <td ng-show="total() > 75 && hasFootwear()">[<a href ng-click="selectDiscount('overSeventyFive')">£15 off!</a>]</td>
-            <td></td>
-        </tr>
-    </table>
-
-
-
+    <!-- Shopping cart -->
+    <div ng-controller="ShopCartCtrl" id="shopping-cart" class="table-responsive">
+        <div id="alerts">
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
         </div>
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-        <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/controllers.js"></script>
-        <script src="js/services.js"></script>
+    <table ng-show= "invoice.length >  0" class="basket table table-striped table-condensed table-bordered">
+        <tr>
+            <th>Shopping Cart</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th><th>
+                </tr>
+                <tr ng-repeat='item in invoice'</tr>
+                <td data-ng-bind="item.name"></td>
+                <td><select ng-options="stock for stock in range(1, item.stockLeft)" ng-model="item.qty" ng-required </select></td>
+                <td ng-model="item.price" data-ng-bind='item.price | currency : "£" : 2'></td>
+                <td data-ng-bind='item.price * item.qty | currency : "£" : 2'></td>
+                <td>
+                    <a href class="btn btn-danger btn-sm" ng-click="removeItem($index)" id="remove-item">Remove</a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td> Sub-total</td>
+                <td id="sub-total" data-ng-bind='total() | currency : "£" : 2'></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Final cost</td>
+                <td id="final-cost" data-ng-bind='applyDiscount(total()) | currency : "£" : 2'></td>
+                <td></td>
+            </tr>
+            <tr ng-show="invoice.length > 0">
+                <td></td>
+                <td>[<a id="standard-discount" href ng-click="selectDiscount('standardDiscount')">£5 off!</a>]</td>
+                <td>[<a id="over-fifty" href ng-click="total() > 50 ? selectDiscount('overFifty') : addAlert('You must spend more than £50 to use this discount')">£10 off!</a>]</td>
+                <td ng-show="total() > 75 && hasFootwear()">[<a id="over-seventy" href ng-click="selectDiscount('overSeventyFive')">£15 off!</a>]</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="btn btn-success">Checkout</td>
+            </tr>
+        </table>
+        <!-- end of shopping cart -->
+
+
+    </div>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
     </body>
     </html>

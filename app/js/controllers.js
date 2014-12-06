@@ -2,7 +2,7 @@
 
 var shopControllers = angular.module('shopControllers', []);
 
-shopControllers.controller('ItemListCtrl',['$scope', 'Items', function($scope, Items){
+shopControllers.controller('ItemListCtrl',['$scope', 'Items', 'Alerts', function($scope, Items, Alerts){
     $scope.products = Items.shelf;
 
     $scope.invoice = Items.invoice
@@ -14,9 +14,11 @@ shopControllers.controller('ItemListCtrl',['$scope', 'Items', function($scope, I
     }
 }]);
 
-shopControllers.controller('ShopCartCtrl',['$scope', 'Items', function($scope, Items){
+shopControllers.controller('ShopCartCtrl',['$scope', 'Items', 'Alerts', function($scope, Items, Alerts){
     $scope.invoice = Items.invoice;
+    $scope.alerts = Alerts.alerts
 
+    // Range for dynamically setting amount of product selectable
     $scope.range = function(start, end) {
         var result = [];
         for (var i = start; i <= end; i++) {
@@ -51,15 +53,23 @@ shopControllers.controller('ShopCartCtrl',['$scope', 'Items', function($scope, I
             if (item.category.indexOf('Footwear') > -1 ) footwear = true
         })
        return footwear 
-    }
+    };
 
     $scope.selectDiscount = function(discount){
         $scope.activeDiscount = $scope.discounts[discount]
-    }
+    };
 
     $scope.applyDiscount = function(total){
         total += $scope.activeDiscount
         return total
+    };
+
+    $scope.addAlert = function(message) {
+        $scope.alerts.push({type: 'danger', msg: message})
+    }
+
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
     }
 
     

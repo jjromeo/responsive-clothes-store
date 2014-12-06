@@ -1,4 +1,5 @@
 var shopServices = angular.module('shopServices', [])
+
 shopServices.factory('Items', function() {
     return {
             shelf: [{'name': 'Almond Toe Court Shoes, Patent Black',
@@ -72,3 +73,15 @@ shopServices.factory('Items', function() {
         ]
     }
 });
+
+shopServices.factory('Alerts', function(){
+    return {
+        alerts: [],
+        addAlert: function(message) {
+                    $scope.alerts.push({type: 'danger', msg: message})
+                },
+        closeAlert: function(index) {
+                    $scope.alerts.splice(index, 1);
+                }
+    }
+})

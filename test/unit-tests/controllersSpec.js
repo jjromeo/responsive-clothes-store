@@ -55,6 +55,7 @@ describe('Shop controllers', function() {
             expect(scope.hasFootwear()).toBe(false)
             scope.invoice.push({'price': 99.00, 'qty': 1, 'category': "Men's Footwear"})
             expect(scope.hasFootwear()).toBe(true)
+            console.log(scope.addAlert())
         }));
     });
 });

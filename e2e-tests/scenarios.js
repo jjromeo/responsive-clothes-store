@@ -8,8 +8,11 @@ describe('shopApp', function() {
       var firstItem = element(by.repeater('product in products').row(0))
       var secondItem= element(by.repeater('product in products').row(1))
       var addFirstItem = firstItem.element(by.css('#add-item'))
+      var addSecondItem = secondItem.element(by.css('#add-item'))
       var firstCartItem = element(by.repeater('item in invoice').row(0))
       var rmFirstCartItem = firstCartItem.element(by.css('#remove-item'))
+      var subTotal = element(by.css('#sub-total'))
+      var finalCost = element(by.css('#final-cost'))
 
     beforeEach(function() {
       browser.get('/app');
@@ -35,9 +38,26 @@ describe('shopApp', function() {
       expect(shoppingCart.count()).toBe(0)
   })
 
-  it('should be able to view the total price of the products in cart', function(){
-
+  it('should be able to view the total price when there is a product in cart', function(){
+      addFirstItem.click()
+      expect(subTotal.getText()).toBe('£99.00')
+      expect(finalCost.getText()).toBe('£99.00')
   })
+
+  it('should be able to view the total price of multiple products in cart', function(){
+      addFirstItem.click()
+      addSecondItem.click()
+      expect(subTotal.getText()).toBe('£141.00')
+      expect(finalCost.getText()).toBe('£141.00')
+  })
+
+  it('should be able to apply a £5 off voucher to shopping cart total', function(){
+      addFirstItem.click()
+      element(by.css('#standard-discount')).click()
+      expect(subTotal.getText()).toBe('£99.00')
+      expect(finalCost.getText()).toBe('£94.00')
+  })
+
 
 });
 
