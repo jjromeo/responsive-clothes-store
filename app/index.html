@@ -79,10 +79,10 @@
                 <td></td>
             </tr>
             <tr ng-show="invoice.length > 0">
-                <td></td>
-                <td>[<a id="standard-discount" href ng-click="selectDiscount('standardDiscount')">£5 off!</a>]</td>
-                <td>[<a id="over-fifty" href ng-click="total() > 50 ? selectDiscount('overFifty') : addAlert('You must spend more than £50 to use this discount')">£10 off!</a>]</td>
-                <td ng-show="total() > 75 && hasFootwear()">[<a id="over-seventy" href ng-click="selectDiscount('overSeventyFive')">£15 off!</a>]</td>
+                <td><strong>Vouchers</strong></td>
+                <td><a class="btn btn-info" id="standard-discount" href ng-click="selectDiscount('standardDiscount')">£5 off!</a></td>
+                <td><a class="btn btn-info" id="over-fifty" href ng-click="total() > 50 ? selectDiscount('overFifty') : addAlert('You must spend more than £50 to use this discount')">£10 off!</a></td>
+                <td><a class="btn btn-info" id="over-seventy" href ng-click="total() > 75 && hasFootwear() ? selectDiscount('overSeventyFive') : addAlert('You must purchase some footwear and spend over £75 in order to use this discount.')">£15 off!</a></td>
                 <td></td>
             </tr>
             <tr>
