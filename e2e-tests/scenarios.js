@@ -8,9 +8,11 @@ describe('shopApp', function() {
       var firstItem = element(by.repeater('product in products').row(0))
       var secondItem = element(by.repeater('product in products').row(1))
       var sharkSkin = element(by.repeater('product in products').row(9))
+      var outOfStockFlipFlops = element(by.repeater('product in products').row(4))
       var addFirstItem = firstItem.element(by.css('#add-item'))
       var addSecondItem = secondItem.element(by.css('#add-item'))
       var addSharkSkin = sharkSkin.element(by.css('#add-item'))
+      var addFlipFlops = outOfStockFlipFlops.element(by.css('#add-item'))
       var firstCartItem = element(by.repeater('item in invoice').row(0))
       var rmFirstCartItem = firstCartItem.element(by.css('#remove-item'))
       var subTotal = element(by.css('#sub-total'))
@@ -100,5 +102,10 @@ describe('shopApp', function() {
       expect(finalCost.getText()).toBe('£84.00')
   })
 
+  it('should not be able to add out of stock items to shopping cart', function(){
+      addFlipFlops.click()
+      expect(element(by.css('.alert-msg')).getText()).toBe('Sorry, this item is out of stock')
+      expect(subTotal.getText()).toBe('')
+  })
 });
 
