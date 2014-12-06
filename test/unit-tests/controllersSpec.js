@@ -9,16 +9,9 @@ describe('Shop controllers', function() {
         it ('should create a products model with 13 items', inject(function($controller){
             var scope = {},
             ctrl = $controller('ItemListCtrl', {$scope:scope});
-
             expect (scope.products.length).toBe(13);
             expect (scope.products[0].name).toBe('Almond Toe Court Shoes, Patent Black')
         })); 
-
-        it ('should create an invoice model with 0 items', inject(function($controller){
-            var scope = {},
-            ctrl = $controller('ShopCartCtrl', {$scope:scope});
-            expect (scope.invoice.length).toBe(0);
-        }));
 
         it ('can push items into the invoice array', inject(function($controller){
             var scope = {},
@@ -27,6 +20,19 @@ describe('Shop controllers', function() {
             scope.addItem(0)
             expect (scope.invoice.length).toBe(1);
         }));
+
+    })
+
+    describe('ShopCartCtrl', function() {
+
+        beforeEach(module('shopApp'));
+
+        it ('should create an invoice model with 0 items', inject(function($controller){
+            var scope = {},
+            ctrl = $controller('ShopCartCtrl', {$scope:scope});
+            expect (scope.invoice.length).toBe(0);
+        }));
+
 
         it ('can remove items from the invoice array', inject(function($controller){
             var scope = {},
@@ -48,6 +54,28 @@ describe('Shop controllers', function() {
             expect(scope.applyDiscount(subTotal)).toBe(94.00)
         }));
 
+        it ('can apply a £10 discount to total cost', inject(function($controller){
+            var scope = {},
+            ctrl = $controller('ShopCartCtrl', {$scope:scope});
+            scope.invoice.push({'price': 99.00, 'qty': 1})
+            var subTotal = scope.total()
+            var discount = scope.activeDiscount
+            scope.selectDiscount('overFifty')
+            expect(subTotal).toBe(99.00)
+            expect(scope.applyDiscount(subTotal)).toBe(89.00)
+        }));
+
+        it ('can apply a £15 discount to total cost', inject(function($controller){
+            var scope = {},
+            ctrl = $controller('ShopCartCtrl', {$scope:scope});
+            scope.invoice.push({'price': 99.00, 'qty': 1})
+            var subTotal = scope.total()
+            var discount = scope.activeDiscount
+            scope.selectDiscount('overSeventyFive')
+            expect(subTotal).toBe(99.00)
+            expect(scope.applyDiscount(subTotal)).toBe(84.00)
+        }));
+
         it ('knows whether the invoice includes an item of Footwear', inject(function($controller){
             var scope = {},
             ctrl = $controller('ShopCartCtrl', {$scope:scope});
@@ -55,7 +83,25 @@ describe('Shop controllers', function() {
             expect(scope.hasFootwear()).toBe(false)
             scope.invoice.push({'price': 99.00, 'qty': 1, 'category': "Men's Footwear"})
             expect(scope.hasFootwear()).toBe(true)
-            console.log(scope.addAlert())
         }));
+
+        it ('can put an alert into the alerts array', inject(function($controller){
+            var scope = {},
+            ctrl = $controller('ShopCartCtrl', {$scope:scope});
+            expect(scope.alerts.length).toBe(0)
+            scope.addAlert('hello')
+            expect(scope.alerts.length).toBe(1)
+        }));
+
+        it ('can remove an alert from the alerts array', inject(function($controller){
+            var scope = {},
+            ctrl = $controller('ShopCartCtrl', {$scope:scope});
+            scope.addAlert('hello')
+            expect(scope.alerts.length).toBe(1)
+            scope.closeAlert(0)
+            expect(scope.alerts.length).toBe(0)
+        }));
+        
+
     });
 });

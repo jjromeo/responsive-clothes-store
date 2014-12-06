@@ -5,10 +5,9 @@ var shopControllers = angular.module('shopControllers', []);
 shopControllers.controller('ItemListCtrl',['$scope', 'Items', 'Alerts', function($scope, Items, Alerts){
     $scope.products = Items.shelf;
     $scope.invoice = Items.invoice
-    $scope.alerts = Alerts.alerts
 
     $scope.addAlert = function(message) {
-        $scope.alerts.push({type: 'danger', msg: message})
+        Alerts.alerts.push({type: 'danger', msg: message})
     }
 
     $scope.hasStock = function(itemIndex){
