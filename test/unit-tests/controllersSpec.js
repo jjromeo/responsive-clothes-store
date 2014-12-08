@@ -1,21 +1,8 @@
 'use strict';
 
 describe('Shop controllers', function() {
-   beforeEach(function(){
-    this.addMatchers({
-      toEqualData: function(expected) {
-        return angular.equals(this.actual, expected);
-      }
-    });
-  }); 
-    describe('ItemListCtrl', function() {
-            var ctrl, scope, $httpBackend;
-        
-        beforeEach(module('shopApp'));
-        beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
-            $httpBackend = _$httpBackend_
-            $httpBackend.expectGET('inventory/products.json').
-                respond([{"name": "Almond Toe Court Shoes, Patent Black",
+
+  var threeProducts = [{"name": "Almond Toe Court Shoes, Patent Black",
                         "category": "Women's Footwear",
                         "price": 99.00,
                         "stockLeft": 5,
@@ -29,7 +16,16 @@ describe('Shop controllers', function() {
                         "category": "Men's Footwear",
                         "price": 34.00,
                         "stockLeft": 12,
-                        "img": "tan_loafers.jpeg"}])
+                        "img": "tan_loafers.jpeg"}]
+
+    describe('ItemListCtrl', function() {
+            var ctrl, scope, $httpBackend;
+        
+        beforeEach(module('shopApp'));
+        beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
+            $httpBackend = _$httpBackend_
+            $httpBackend.expectGET('inventory/products.json').
+                respond(threeProducts)
             scope = $rootScope.$new()
             ctrl = $controller('ItemListCtrl', {$scope: scope});
         }));
@@ -53,7 +49,7 @@ describe('Shop controllers', function() {
         var ctrl, scope;
 
         beforeEach(module('shopApp'));
-        beforeEach(inject(function($httpBackend, $rootScope, $controller) {
+        beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
             ctrl = $controller('ShopCartCtrl', {$scope: scope});
         }));
