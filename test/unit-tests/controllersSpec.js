@@ -41,6 +41,7 @@ describe('Shop controllers', function() {
         })); 
 
         it ('can push items into the invoice array', inject(function($controller){
+            $httpBackend.flush()
             expect(scope.invoice.length).toBe(0);
             scope.addItem(0)
             expect(scope.invoice.length).toBe(1);
