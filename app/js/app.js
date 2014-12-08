@@ -4,5 +4,6 @@ var shopApp = angular.module('shopApp', [
     'ngRoute', 
     'shopServices', 
     'shopControllers',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngResource'
     ])
