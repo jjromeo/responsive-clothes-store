@@ -5,17 +5,18 @@
 describe('shopApp', function() {
 
       var shoppingCart = element.all(by.repeater('item in invoice'));
-      var firstItem = element(by.repeater('product in products').row(0))
-      var secondItem = element(by.repeater('product in products').row(1))
-      var sharkSkin = element(by.repeater('product in products').row(9))
-      var outOfStockFlipFlops = element(by.repeater('product in products').row(4))
-      var firstCartItem = element(by.repeater('item in invoice').row(0))
-      var rmFirstCartItem = firstCartItem.element(by.css('#remove-item'))
-      var subTotal = element(by.css('#sub-total'))
-      var finalCost = element(by.css('#final-cost'))
+      var products = by.repeater('product in products')
+      var firstItem = element(products.row(0));
+      var secondItem = element(products.row(1));
+      var sharkSkin = element(products.row(9));
+      var outOfStockFlipFlops = element(products.row(4));
+      var firstCartItem = element(by.repeater('item in invoice').row(0));
+      var rmFirstCartItem = firstCartItem.element(by.css('#remove-item'));
+      var subTotal = element(by.css('#sub-total'));
+      var finalCost = element(by.css('#final-cost'));
 
       var addItem = function(item){
-          item.element(by.css('#add-item')).click()
+          item.element(by.css('#add-item')).click();
       }
 
     beforeEach(function() {
