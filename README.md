@@ -2,6 +2,8 @@
 
 This is a one-page web-app created to simulate an online store.
 
+Initialized using the angular-seed repo, hence the large amount of commits.
+
 ## Specification
 
 It has been created to the specification that it must :
@@ -59,12 +61,6 @@ and WebDriver is updated, you can run the end-to-end tests using the supplied np
 
 * the end-to-end tests are found in `e2e-tests/scenarios.js`
 ```
-
-
-
-
-
-
 [protractor]: https://github.com/angular/protractor
 [jasmine]: http://jasmine.github.io
 [karma]: http://karma-runner.github.io
